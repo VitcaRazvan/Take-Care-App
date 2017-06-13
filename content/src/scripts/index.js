@@ -13,7 +13,7 @@ const reduxProxyStore = new Store({portName: 'take-care'});
 const page_wrapper= document.createElement('div');
 page_wrapper.id = 'take_care_wrapper';
 
-document.body.insertBefore(page_wrapper, document.body.childNodes[0]);
+document.body.insertBefore(page_wrapper,document.body.childNodes[0]);
 
 render(
     <Provider store={reduxProxyStore}>
