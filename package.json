@@ -1,17 +1,27 @@
 {
   "name": "take-care-app",
   "version": "1.0.0",
-  "main": "index.js",
+  "private": true,
   "dependencies": {
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
     "babel-preset-latest": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "react": "^15.5.4",
+    "react-chrome-redux": "^1.3.2",
     "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "redux": "^3.6.0",
     "webpack": "^2.5.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-util": "^3.0.8",
+    "react-scripts": "^1.0.7",
+    "rimraf": "^2.6.1"
+  },
   "scripts": {
     "compile": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -20,10 +30,11 @@
     "type": "git",
     "url": "git+https://github.com/VitcaRazvan/take-care-app.git"
   },
-  "author": "",
+  "author": "Vitca Razvan-Adrian",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/VitcaRazvan/take-care-app/issues"
+    "url": "https://github.com/VitcaRazvan/take-care-app/issues",
+    "email": "r.vitca@gmail.com"
   },
   "homepage": "https://github.com/VitcaRazvan/take-care-app#readme",
   "description": ""
