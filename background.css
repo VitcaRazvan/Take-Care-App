@@ -1,0 +1,14 @@
+.take_care_wrapper {
+    background-color: black ;
+    min-height: 100% ;
+    min-width: 100% ;
+    height: auto ;
+    position: fixed ;
+
+    pointer-events: none ; /* allows me to click through this div to underlying elements */
+
+    top: 0 ;
+    left: 0 ;
+
+    z-index: 999 ; /* puts sunglasses div over everything*/
+}

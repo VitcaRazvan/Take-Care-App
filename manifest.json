@@ -12,13 +12,18 @@
   },
   "browser_action": {
     "default_title": "Take care app",
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": "bbgeye128.png"
   },
+
+  "permissions": ["tabs", "http://*/*", "https://*/*", "file:///*/*"],
   "content_scripts": [
     {
-      "matches": ["*://*/*"],
+      "matches": ["*://*/*", "file:///*/*"],
       "css": [],
       "js": ["content.js"]
     }
-  ]
+  ],
+
+  "web_accessible_resources": ["background.css"]
 }

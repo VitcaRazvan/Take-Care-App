@@ -13,14 +13,18 @@ class App extends Component {
     componentDidMount(){
         var rangeInput= document.getElementById("myRange");
         rangeInput.addEventListener('mouseup', () => {
+
+            var x = document.getElementById("myRange").value;
+            document.getElementById("opacity_status").innerHTML = x;
+            console.log("ala in popup", x);
+
             this.props.dispatch({
-                type: 'CHANGE_OPACITY_RANGE'
+                type: 'CHANGE_OPACITY_RANGE',
+                value: document.getElementById("myRange").value
             });
         })
 
-        console.log("ala in popup");
-        // var x = document.getElementById("myRange").value;
-        // document.getElementById("opacity_status").innerHTML = x;
+
     }
     render(){
         return(
@@ -28,18 +32,17 @@ class App extends Component {
                 <input type="range" id="myRange" min="0" max="90" step="1"></input>
                 <span id="opacity_status">Opacity:{this.props.opacityRange}</span>
                 <br></br>
-                Clickkk Count: {this.props.count}
+                {/*Clickkk Count: {this.props.count}*/}
             </div>
         );
     }
 }
-
+// const getStatistics = (count, opacity) => {
+//     return
+// }
 const mapStateToProps = (state) => {
     return {
-        statistics: getStatistics(
-            state.count,
-            state.opacityRange
-        )
+        opacityRange: state.opacityRange
     };
 };
 

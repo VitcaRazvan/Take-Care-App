@@ -54,7 +54,12 @@ gulp.task('clean', (cb) => {
     rimraf('./build', cb);
 });
 
-gulp.task('build', ['copy-manifest', 'popup-js', 'popup-html', 'event-js', 'content-js']);
+gulp.task('icon-png', ['clean'], () => {
+    return gulp.src('bbgeye128.png')
+        .pipe(gulp.dest('./build'));
+});
+
+gulp.task('build', ['copy-manifest', 'popup-js', 'popup-html', 'event-js', 'content-js', 'icon-png']);
 
 gulp.task('watch', ['default'], () => {
     gulp.watch('popup/**/*', ['build']);

@@ -4,7 +4,9 @@
 
 import {combineReducers} from 'redux';
 import count from './count';
+import opacity from './opacity'
 
 export default combineReducers({
-    count
+    count,
+    opacity
 });
