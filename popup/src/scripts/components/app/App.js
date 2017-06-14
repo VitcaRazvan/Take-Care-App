@@ -11,16 +11,28 @@ class App extends Component {
     }
 
     componentDidMount(){
-        var rangeInput= document.getElementById("myRange");
+        var rangeInput= document.getElementById("opacity_range");
         rangeInput.addEventListener('mouseup', () => {
 
-            var x = document.getElementById("myRange").value;
+            var x = document.getElementById("opacity_range").value;
             document.getElementById("opacity_status").innerHTML = x;
             console.log("ala in popup", x);
 
+
             this.props.dispatch({
                 type: 'CHANGE_OPACITY_RANGE',
-                value: document.getElementById("myRange").value
+                value: document.getElementById("opacity_range").value
+            });
+
+        });
+        var yellowInput= document.getElementById("yellow_range");
+        yellowInput.addEventListener('mouseup', () => {
+            var x = document.getElementById("yellow_range").value;
+            document.getElementById("yellow_status").innerHTML = x;
+
+            this.props.dispatch({
+                type: 'CHANGE_YELLOW_RANGE',
+                value: document.getElementById("yellow_range").value
             });
         })
 
@@ -29,17 +41,17 @@ class App extends Component {
     render(){
         return(
             <div>
-                <input type="range" id="myRange" min="0" max="90" step="1"></input>
+                <input type="range" id="opacity_range" min="0" max="70" step="1"></input>
                 <span id="opacity_status">Opacity:{this.props.opacityRange}</span>
                 <br></br>
-                {/*Clickkk Count: {this.props.count}*/}
+
+                <input type="range" id="yellow_range" min="0" max="70" step="1"></input>
+                <span id="yellow_status">Opacity:{this.props.opacityRange}</span>
             </div>
         );
     }
 }
-// const getStatistics = (count, opacity) => {
-//     return
-// }
+
 const mapStateToProps = (state) => {
     return {
         opacityRange: state.opacityRange

@@ -15,12 +15,6 @@ class App extends Component {
         });
 
         console.log("ala in pagina", this.props.opacity);
-        // document.addEventListener('mouseup', () => {
-        //     this.props.dispatch({
-        //         type: 'CHANGE_OPACITY_RANGE'
-        //     });
-        // });
-        // console.log("ala in pagina 2");
     }
 
     setShade(value){

@@ -55,11 +55,27 @@ gulp.task('clean', (cb) => {
 });
 
 gulp.task('icon-png', ['clean'], () => {
-    return gulp.src('bbgeye128.png')
+    return (
+        gulp.src('assets/img/bbgeye128.png')
+            .pipe(plugins.rename('bbgeye128.png'))
+            .pipe(gulp.dest('./build')),
+        gulp.src('assets/img/bbgeye48.png')
+            .pipe(plugins.rename('bbgeye48.png'))
+            .pipe(gulp.dest('./build'))),
+        gulp.src('assets/img/bbgeye16.png')
+            .pipe(plugins.rename('bbgeye16.png'))
+            .pipe(gulp.dest('./build'))
+
+});
+
+
+gulp.task('background-css', ['clean'], () => {
+    return gulp.src('background.css')
         .pipe(gulp.dest('./build'));
 });
 
-gulp.task('build', ['copy-manifest', 'popup-js', 'popup-html', 'event-js', 'content-js', 'icon-png']);
+
+gulp.task('build', ['copy-manifest', 'popup-js', 'popup-html', 'event-js', 'content-js', 'icon-png', 'background-css']);
 
 gulp.task('watch', ['default'], () => {
     gulp.watch('popup/**/*', ['build']);
