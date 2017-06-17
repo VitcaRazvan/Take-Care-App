@@ -1,9 +1,9 @@
 /**
  * Created by Vitca Razvan on 6/14/2017.
  */
-const initialState = 0;
+const initialValue = 0;
 
-export default (state = initialState, action) => {
+export default (state = initialValue, action) => {
     console.log("wiiiiiii", action.payload);
     switch (action.type) {
         case 'CHANGE_OPACITY_RANGE':

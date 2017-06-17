@@ -18,8 +18,8 @@ class App extends Component {
     }
 
     setShade(value){
+        console.log("inta in setShadeee", value)
     return(
-        console.log("inta in setShadeee", value),
             document.getElementById("take_care_wrapper").style.opacity = value/100
     )
     };
