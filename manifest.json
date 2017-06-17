@@ -19,7 +19,7 @@
     "48": "bbgeye48.png",
     "128": "bbgeye128.png"
   },
-  "permissions": ["tabs", "http://*/*", "https://*/*", "file:///*/*"],
+  "permissions": ["tabs", "http://*/*", "https://*/*", "file:///*/*", "storage"],
   "content_scripts": [
     {
       "matches": ["*://*/*", "file:///*/*"],

@@ -70,6 +70,18 @@ class App extends Component {
         //     document.getElementById("yellow_range").disabled = false;
         // }
     }
+    saveData(){
+        chrome.storage.sync.set({'opacity_value': document.getElementById("opacity_range").value}, () =>{
+            alert("Success! data: "+ document.getElementById("opacity_range").value + " saved")
+
+        })
+    }
+    getData(){
+        chrome.storage.sync.get('opacity_value', function(data){
+            alert("Data: "+ data.opacity_value + " got!")
+
+        })
+    }
 
     render(){
         return(
@@ -80,6 +92,10 @@ class App extends Component {
 
                 <input type="range" id="yellow_range" min="0" max="70" step="1"></input>
                 <span id="yellow_status">Opacity:{this.props.opacityRange}</span>
+
+                <input type="button" id="save_data" value="saaave" onClick={this.saveData}/>
+                <br></br>
+                <input type="button" id="get_data" value="geeet" onClick={this.getData}/>
             </div>
         );
     }
