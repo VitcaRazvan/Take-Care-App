@@ -4,3 +4,5 @@ www/bundle.js
 
 #production
 /build
+
+.idea
