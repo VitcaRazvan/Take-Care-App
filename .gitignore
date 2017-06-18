@@ -5,4 +5,4 @@ www/bundle.js
 #production
 /build
 
-.idea
+**/.idea/workspace.xml
