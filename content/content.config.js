@@ -3,23 +3,25 @@ const path = require('path');
 module.exports = {
 
     entry: [
-        './event/src/index.js'
+        './content/src/scripts/content.js',
+
     ],
 
     output: {
-        filename: 'event.js',
-        path: path.join(__dirname, '../', 'build')
+        filename: 'content.js',
+        path: path.join(__dirname, '../', 'build'),
+        publicPath: '/'
     },
 
     resolve: {
-        extensions: ['.js', '.json'],
+        extensions: ['.js', '.jsx', '.scss', '.json'],
         modules: ['node_modules']
     },
 
     module: {
         loaders: [
             {
-                test: /\.(js)?$/,
+                test: /\.(jsx|js)?$/,
                 loader: 'babel-loader',
                 exclude: /(node_modules)/,
                 include: path.join(__dirname, 'src'),

@@ -4,13 +4,21 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-class App extends Component {
+class Popup extends Component {
     constructor(props){
         console.log("ala constructor popup");
         super(props);
+        this.state ={
+            savedChanges: false
+        }
+        //this.setInitialShade();
     }
 
     componentDidMount(){
+
+        document.addEventListener('click', () =>{
+
+        });
         var opacityInput= document.getElementById("opacity_range");
         opacityInput.addEventListener('mouseup', () => {
 
@@ -42,8 +50,14 @@ class App extends Component {
 
     }
 
+    // setInitialShade(){
+    //     this.props.dispatch({
+    //         type: 'CHANGE_OPACITY_RANGE',
+    //         value: this.props.opacityValue
+    //     });
+    // }
     handleClick(event){
-        if (event.target && event.target.nodeName == "INPUT"){
+        if (event.target && event.target.nodeName == "INPUT" && event.target.type == "range"){
             console.log("INTRA IN IFFF");
             this.disableRange();
         }
@@ -71,33 +85,53 @@ class App extends Component {
         // }
     }
     saveData(){
-        chrome.storage.sync.set({'opacity_value': document.getElementById("opacity_range").value}, () =>{
+        var opacityValue = document.getElementById("opacity_range").value;
+        chrome.storage.sync.set({'opacityValueChrome': opacityValue}, () =>{
             alert("Success! data: "+ document.getElementById("opacity_range").value + " saved")
 
         })
+        this.setState({savedChanges: true});
     }
     getData(){
-        chrome.storage.sync.get('opacity_value', function(data){
-            alert("Data: "+ data.opacity_value + " got!")
-
-        })
+        return(this.props.opacityValue);
     }
 
+    cancelSaving(){
+
+    }
     render(){
+
+        // var opacityValue = this.state.opacityRange;
+        // console.log("IN RENER VAL LA OPACITY: " ,opacityValue);
+        //TODO: fac funtie care face disalbe chiar la inceput daca amandoua slideurile nu is pe 0
+
         return(
-            <div id="range_sliders">
-                <input type="range" id="opacity_range" min="0" max="70" step="1"></input>
-                <span id="opacity_status">Opacity:{this.props.opacityRange}</span>
-                <br></br>
+            <div id="popup_wrapper">
+                <div id="range_sliders">
+                    <input type="range" id="opacity_range" min="0" max="70" step="1" defaultValue={this.props.opacityValue}></input>
+                    <p id="opacity_status">Opacity:{this.props.opacityRange}</p>
+                    <br></br>
 
-                <input type="range" id="yellow_range" min="0" max="70" step="1"></input>
-                <span id="yellow_status">Opacity:{this.props.opacityRange}</span>
+                    <input type="range" id="yellow_range" min="0" max="70" step="1" defaultValue="0"></input>
+                    <p id="yellow_status">Yellow:{this.props.opacityRange}</p>
+                </div>
+                <div id="popup_buttons">
+                    <input type="button" id="save_data" value="Save Data" onClick={this.saveData} style={{marginRight: 10+'px'}}/>
 
-                <input type="button" id="save_data" value="saaave" onClick={this.saveData}/>
-                <br></br>
-                <input type="button" id="get_data" value="geeet" onClick={this.getData}/>
+                    <input type="button" id="get_data" value="Cancel" onClick={this.cancelSaving}/>
+                </div>
             </div>
         );
+    }
+
+    component(){
+        if(this.state.savedChanges == false){
+            alert("Save changes in order to keep them!")
+            this.props.dispatch({
+                type: 'CHANGE_OPACITY_RANGE',
+                value: this.props.opacityValue
+            });
+        }
     }
 }
 
@@ -107,4 +141,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(Popup);

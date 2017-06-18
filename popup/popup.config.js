@@ -3,12 +3,11 @@ const path = require('path');
 module.exports = {
 
     entry: [
-        './content/src/scripts/index.js',
-
+        './popup/src/scripts/popup.js'
     ],
 
     output: {
-        filename: 'content.js',
+        filename: 'popup.js',
         path: path.join(__dirname, '../', 'build'),
         publicPath: '/'
     },

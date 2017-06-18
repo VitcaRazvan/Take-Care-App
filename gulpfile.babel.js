@@ -5,9 +5,9 @@ import rimraf from 'rimraf';
 
 const plugins = loadPlugins();
 
-import popupWebpackConfig from './popup/webpack.config';
-import eventWebpackConfig from './event/webpack.config';
-import contentWebpackConfig from './content/webpack.config';
+import popupWebpackConfig from './popup/popup.config';
+import eventWebpackConfig from './event/event.config';
+import contentWebpackConfig from './content/content.config';
 
 gulp.task('popup-js', ['clean'], (cb) => {
     webpack(popupWebpackConfig, (err, stats) => {
