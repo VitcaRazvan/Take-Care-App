@@ -15,13 +15,16 @@ page_wrapper.id = 'take_care_wrapper';
 
 document.body.appendChild(page_wrapper);
 
-chrome.storage.sync.get('opacityValueChrome', (data) => {
+chrome.storage.sync.get(['opacityValueChrome', 'yellowValueChrome'], (data) => {
 
-    console.log("Data: "+ data.opacityValueChrome + " got in background from chrome ");
+    console.log("Data: "+ data.opacityValueChrome + " and "+data.yellowValueChrome+ " got in background from chrome ");
 
     ReactDOM.render(
         <Provider store={reduxProxyStore}>
-            <Content opacityValueChrome={data.opacityValueChrome}/>
+            <Content
+                opacityValue={data.opacityValueChrome}
+                yellowValue={data.yellowValueChrome}
+            />
         </Provider>,
         document.getElementById('take_care_wrapper')
     );

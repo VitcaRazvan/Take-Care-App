@@ -12,6 +12,7 @@ class Popup extends Component {
             savedChanges: false
         }
         //this.setInitialShade();
+
     }
 
     componentDidMount(){
@@ -29,7 +30,9 @@ class Popup extends Component {
 
             this.props.dispatch({
                 type: 'CHANGE_OPACITY_RANGE',
-                value: document.getElementById("opacity_range").value
+                value: document.getElementById("opacity_range").value,
+                color: 'black',
+                toggledOpacity: true
             });
 
         });
@@ -40,7 +43,8 @@ class Popup extends Component {
 
             this.props.dispatch({
                 type: 'CHANGE_YELLOW_RANGE',
-                value: document.getElementById("yellow_range").value
+                value: document.getElementById("yellow_range").value,
+                color: 'yellow'
             });
         });
 
@@ -48,6 +52,7 @@ class Popup extends Component {
         console.log("range listener ", rangeListener, " vs opacity range ", opacityInput);
         rangeListener.addEventListener('mouseup', this.handleClick.bind(this) );
 
+        this.disableRange(this.props.opacityValue, this.props.yellowValue);
     }
 
     // setInitialShade(){
@@ -57,15 +62,16 @@ class Popup extends Component {
     //     });
     // }
     handleClick(event){
+        var opacityValue = document.getElementById("opacity_range").value;
+        var yellowValue = document.getElementById("yellow_range").value;
         if (event.target && event.target.nodeName == "INPUT" && event.target.type == "range"){
             console.log("INTRA IN IFFF");
-            this.disableRange();
+            this.disableRange(opacityValue, yellowValue);
         }
     }
 
-    disableRange(){
-        var opacityValue = document.getElementById("opacity_range").value;
-        var yellowValue = document.getElementById("yellow_range").value;
+    disableRange(opacityValue, yellowValue){
+
         //console.log("intra in disableslider cu val:", opacityValue, yellowValue," si  slider cu ", slider);
 
         if(opacityValue == 0){
@@ -79,25 +85,49 @@ class Popup extends Component {
             document.getElementById("opacity_range").disabled = true;
 
         }
-        //   if ()  {
-        //     document.getElementById("opacity_range").disabled = false;
-        //     document.getElementById("yellow_range").disabled = false;
-        // }
+
     }
     saveData(){
         var opacityValue = document.getElementById("opacity_range").value;
-        chrome.storage.sync.set({'opacityValueChrome': opacityValue}, () =>{
-            alert("Success! data: "+ document.getElementById("opacity_range").value + " saved")
+        var yellowValue = document.getElementById("yellow_range").value;
 
-        })
-        this.setState({savedChanges: true});
+        chrome.storage.sync.set({'opacityValueChrome': opacityValue, 'yellowValueChrome': yellowValue}, () =>{
+            alert("Success! data: "+ opacityValue + " and "+ yellowValue + " saved")
+
+        });
+
+        document.getElementById("cancel").disabled = true;
+        //this.setState({savedChanges: true});
     }
     getData(){
         return(this.props.opacityValue);
     }
 
-    cancelSaving(){
+    Cancel(){
+        var opacityValue = this.props.opacityValue;
+        var yellowValue = this.props.yellowValue;
 
+        // chrome.storage.sync.set({'opacityValueChrome': opacityValue, 'yellowValueChrome': yellowValue}, () =>{
+        //     alert("Success! data: "+ opacityValue + " and "+ yellowValue + " saved")
+        //
+        // })
+        console.log("OPACITY " + opacityValue + " YELLOW "+yellowValue);
+        this.props.dispatch({
+            type: 'CHANGE_OPACITY_RANGE',
+            value: opacityValue,
+            color: 'black',
+            toggledOpacity: true
+        });
+
+        this.props.dispatch({
+            type: 'CHANGE_YELLOW_RANGE',
+            value: yellowValue,
+            color: 'yellow'
+        });
+
+        var daddy = window.self;
+        daddy.opener = window.self;
+        daddy.close();
     }
     render(){
 
@@ -109,35 +139,36 @@ class Popup extends Component {
             <div id="popup_wrapper">
                 <div id="range_sliders">
                     <input type="range" id="opacity_range" min="0" max="70" step="1" defaultValue={this.props.opacityValue}></input>
-                    <p id="opacity_status">Opacity:{this.props.opacityRange}</p>
+                    <p id="opacity_status">Opacity:{this.props.opacityValue}</p>
                     <br></br>
 
-                    <input type="range" id="yellow_range" min="0" max="70" step="1" defaultValue="0"></input>
-                    <p id="yellow_status">Yellow:{this.props.opacityRange}</p>
+                    <input type="range" id="yellow_range" min="0" max="30" step="1" defaultValue={this.props.yellowValue}></input>
+                    <p id="yellow_status">Yellow:{this.props.yellowValue}</p>
                 </div>
                 <div id="popup_buttons">
-                    <input type="button" id="save_data" value="Save Data" onClick={this.saveData} style={{marginRight: 10+'px'}}/>
+                    <input type="button" id="save_data" value="Save Data" onClick={this.saveData} style={{marginRight: 5+'px'}}/>
 
-                    <input type="button" id="get_data" value="Cancel" onClick={this.cancelSaving}/>
+                    <input type="button" id="cancel" value="Cancel" onClick={this.Cancel.bind(this)}/>
                 </div>
             </div>
         );
     }
 
-    component(){
-        if(this.state.savedChanges == false){
-            alert("Save changes in order to keep them!")
-            this.props.dispatch({
-                type: 'CHANGE_OPACITY_RANGE',
-                value: this.props.opacityValue
-            });
-        }
-    }
+    // component(){
+    //     if(this.state.savedChanges == false){
+    //         alert("Save changes in order to keep them!")
+    //         this.props.dispatch({
+    //             type: 'CHANGE_OPACITY_RANGE',
+    //             value: this.props.opacityValue
+    //         });
+    //     }
+    // }
 }
 
 const mapStateToProps = (state) => {
     return {
-        opacityRange: state.opacityRange
+        opacityRange: state.opacityRange,
+        yellowRange: state.yellowRange
     };
 };
 

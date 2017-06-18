@@ -5,8 +5,10 @@
 import {combineReducers} from 'redux';
 import count from './count';
 import opacity from './opacity'
+import yellow from './yellow'
 
 export default combineReducers({
     count,
-    opacity
+    opacity,
+    yellow
 });

@@ -11,13 +11,17 @@ import {Provider} from 'react-redux';
 
 const proxyStore = new Store({portName: 'take-care-proxy'});
 
-chrome.storage.sync.get('opacityValueChrome', (data) => {
-    console.log("Data: "+ data.opacityValueChrome + " got!");
+chrome.storage.sync.get(['opacityValueChrome', 'yellowValueChrome'], (data) => {
+
+    console.log("Data: "+ data.opacityValueChrome +" and "+ data.yellowValueChrome + " got!");
     //return(data.opacity_value.toString());
 
 ReactDOM.render(
     <Provider store={proxyStore}>
-        <App opacityValue = {data.opacityValueChrome}/>
+        <App
+            opacityValue = {data.opacityValueChrome}
+            yellowValue = {data.yellowValueChrome}
+        />
     </Provider>,
     document.getElementById('app')
 );
