@@ -40,8 +40,7 @@ gulp.task('content-js', ['clean'], (cb) => {
 });
 
 gulp.task('popup-html', ['clean'], () => {
-    return gulp.src('popup/src/index.html')
-        .pipe(plugins.rename('popup.html'))
+    return gulp.src('popup/src/popup.html')
         .pipe(gulp.dest('./build'))
 });
 

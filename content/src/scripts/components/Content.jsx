@@ -5,9 +5,6 @@ class Content extends Component {
     constructor(props){
         console.log("ala constructor pagina");
         super(props);
-        this.state = {
-            isFirstRun : true
-        }
 
     }
 
@@ -18,22 +15,22 @@ class Content extends Component {
             });
         });
 
-        console.log("ala in pagina", this.props.opacity);
+        console.log("ala in pagina", this.props.black);
 
         //this.setShade();
     }
 
     setShade(){
-        console.log("inta in setShadeee in componenta cu opacity: "+this.props.opacity.value + " si yellow " +this.props.yellow.value);
-        console.log("inta in setShadeee in componenta cu opacity: "+this.props.opacityValue + " si yellow " +this.props.yellowValue + " CHROME");
+        console.log("inta in setShadeee in componenta cu black: "+this.props.black.value + " si yellow " +this.props.yellow.value);
+        console.log("inta in setShadeee in componenta cu black: "+this.props.blackValue + " si yellow " +this.props.yellowValue + " CHROME");
 
-        // if(this.props.opacity == 0){
+        // if(this.props.black == 0){
         //     console.log("inta 1 i if");
         //     this.setState({isFirstRun : false});
-        //     return(document.getElementById("take_care_wrapper").style.opacity = this.props.opacityValueChrome/100);
+        //     return(document.getElementById("take_care_wrapper").style.black = this.props.blackValueChrome/100);
         //
         // }else{
-        if (this.props.yellow.value == undefined && this.props.opacity.value == undefined ){
+        if (this.props.yellow.value == undefined && this.props.black.value == undefined ){
             if(this.props.yellowValue != 0){
                 console.log("11");
                 document.getElementById("take_care_wrapper").style.backgroundColor = "yellow";
@@ -41,12 +38,12 @@ class Content extends Component {
             }else{
                 console.log("22");
                 document.getElementById("take_care_wrapper").style.backgroundColor = "black";
-                document.getElementById("take_care_wrapper").style.opacity = this.props.opacityValue/100;
+                document.getElementById("take_care_wrapper").style.opacity = this.props.blackValue/100;
             }
         }else if (this.props.yellow.value == undefined || this.props.yellow.value == 0){
             console.log("33");
-            document.getElementById("take_care_wrapper").style.backgroundColor = this.props.opacity.color;
-            document.getElementById("take_care_wrapper").style.opacity = this.props.opacity.value/100;
+            document.getElementById("take_care_wrapper").style.backgroundColor = this.props.black.color;
+            document.getElementById("take_care_wrapper").style.opacity = this.props.black.value/100;
         }else {
             console.log("44");
             document.getElementById("take_care_wrapper").style.backgroundColor = this.props.yellow.color;
@@ -65,7 +62,7 @@ class Content extends Component {
         return(
             <div>
                 {/*Count: {this.props.count}*/}
-                Opacity: {this.props.opacity.value}
+                Black: {this.props.black.value}
                 Yellow: {this.props.yellow.value}
             </div>
         );
@@ -76,7 +73,7 @@ class Content extends Component {
 const mapStateToProps = (state) => {
     return {
         count: state.count,
-        opacity: state.opacity,
+        black: state.black,
         yellow: state.yellow
     };
 };

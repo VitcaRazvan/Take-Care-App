@@ -7,7 +7,7 @@
     display: flex !important;
 }
 
-#opacity_container, #yellow_container{
+#black_container, #yellow_container{
     display: flex !important;
 }
 
@@ -94,7 +94,7 @@
 
 
 
-#opacity_container .range {
+#black_container .range {
     -webkit-appearance: none;
     -moz-appearance: none;
     position: absolute;
@@ -105,7 +105,7 @@
     transform: translate(-50%, -50%);
 }
 
-#opacity_container input[type=range]::-webkit-slider-runnable-track {
+#black_container input[type=range]::-webkit-slider-runnable-track {
     -webkit-appearance: none;
     background: rgb(192, 192, 192);
     background: -moz-linear-gradient(45deg, rgb(192, 192, 192) 0%, rgb(153, 153, 153) 25%, rgb(92, 90, 97) 51%, rgb(41, 39, 46) 100%);
@@ -118,11 +118,11 @@
     height: 2px;
 }
 
-#opacity_container input[type=range]:focus {
+#black_container input[type=range]:focus {
     outline: none;
 }
 
-#opacity_container input[type=range]::-moz-range-track {
+#black_container input[type=range]::-moz-range-track {
     -moz-appearance: none;
     background: rgb(192, 192, 192);
     background: -moz-linear-gradient(45deg, rgb(192, 192, 192) 0%, rgb(153, 153, 153) 25%, rgb(92, 90, 97) 51%, rgb(41, 39, 46) 100%);
@@ -135,7 +135,7 @@
     height: 2px;
 }
 
-#opacity_container input[type=range]::-webkit-slider-thumb {
+#black_container input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
     border: 2px solid;
     border-radius: 50%;
@@ -151,7 +151,7 @@
     transition: border 1000ms ease;
 }
 
-#opacity_container input[type=range]::-moz-range-thumb {
+#black_container input[type=range]::-moz-range-thumb {
     -moz-appearance: none;
     border: 2px solid;
     border-radius: 50%;
@@ -167,11 +167,11 @@
 }
 
 
-#opacity_container input[type=range]::-webkit-slider-thumb:active {
+#black_container input[type=range]::-webkit-slider-thumb:active {
     cursor: -webkit-grabbing;
 }
 
-#opacity_container input[type=range]::-moz-range-thumb:active {
+#black_container input[type=range]::-moz-range-thumb:active {
     cursor: -moz-grabbing;
 }
 

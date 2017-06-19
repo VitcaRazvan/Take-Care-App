@@ -4,11 +4,11 @@
 
 import {combineReducers} from 'redux';
 import count from './count';
-import opacity from './opacity'
+import black from './black'
 import yellow from './yellow'
 
 export default combineReducers({
     count,
-    opacity,
+    black,
     yellow
 });

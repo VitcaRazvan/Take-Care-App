@@ -8,29 +8,24 @@ class Popup extends Component {
     constructor(props){
         console.log("ala constructor popup");
         super(props);
-        this.state ={
-            savedChanges: false
-        }
-        //this.setInitialShade();
-
     }
 
     componentDidMount(){
 
-        document.addEventListener('click', () =>{
+        // document.addEventListener('click', () =>{
+        //
+        // });
+        var blackInput= document.getElementById("black_range");
+        blackInput.addEventListener('mouseup', () => {
 
-        });
-        var opacityInput= document.getElementById("opacity_range");
-        opacityInput.addEventListener('mouseup', () => {
-
-            var opacityValue = document.getElementById("opacity_range").value;
-            document.getElementById("opacity_status").innerHTML = opacityValue;
-            console.log("ala in popup", opacityValue);
+            var blackValue = document.getElementById("black_range").value;
+            document.getElementById("black_status").innerHTML = blackValue;
+            console.log("ala in popup", blackValue);
 
 
             this.props.dispatch({
-                type: 'CHANGE_OPACITY_RANGE',
-                value: document.getElementById("opacity_range").value,
+                type: 'CHANGE_BLACK_RANGE',
+                value: document.getElementById("black_range").value,
                 color: 'black',
                 toggledOpacity: true
             });
@@ -49,10 +44,10 @@ class Popup extends Component {
         });
 
         var rangeListener = document.getElementById("range_sliders");
-        console.log("range listener ", rangeListener, " vs opacity range ", opacityInput);
+        console.log("range listener ", rangeListener, " vs black range ", blackInput);
         rangeListener.addEventListener('mouseup', this.handleClick.bind(this) );
 
-        this.disableRange(this.props.opacityValue, this.props.yellowValue);
+        this.disableRange(this.props.blackValue, this.props.yellowValue);
     }
 
     // setInitialShade(){
@@ -62,37 +57,37 @@ class Popup extends Component {
     //     });
     // }
     handleClick(event){
-        var opacityValue = document.getElementById("opacity_range").value;
+        var blackValue = document.getElementById("black_range").value;
         var yellowValue = document.getElementById("yellow_range").value;
         if (event.target && event.target.nodeName == "INPUT" && event.target.type == "range"){
             console.log("INTRA IN IFFF");
-            this.disableRange(opacityValue, yellowValue);
+            this.disableRange(blackValue, yellowValue);
         }
     }
 
-    disableRange(opacityValue, yellowValue){
+    disableRange(blackValue, yellowValue){
 
-        //console.log("intra in disableslider cu val:", opacityValue, yellowValue," si  slider cu ", slider);
+        //console.log("intra in disableslider cu val:", blackValue, yellowValue," si  slider cu ", slider);
 
-        if(opacityValue == 0){
+        if(blackValue == 0){
             document.getElementById("yellow_range").disabled = false;
         }else {
             document.getElementById("yellow_range").disabled = true;
         }
         if (yellowValue == 0){
-            document.getElementById("opacity_range").disabled = false;
+            document.getElementById("black_range").disabled = false;
         }else {
-            document.getElementById("opacity_range").disabled = true;
+            document.getElementById("black_range").disabled = true;
 
         }
 
     }
     saveData(){
-        var opacityValue = document.getElementById("opacity_range").value;
+        var blackValue = document.getElementById("black_range").value;
         var yellowValue = document.getElementById("yellow_range").value;
 
-        chrome.storage.sync.set({'opacityValueChrome': opacityValue, 'yellowValueChrome': yellowValue}, () =>{
-            alert("Success! data: "+ opacityValue + " and "+ yellowValue + " saved")
+        chrome.storage.sync.set({'blackValueChrome': blackValue, 'yellowValueChrome': yellowValue}, () =>{
+            alert("Success! data: "+ blackValue + " and "+ yellowValue + " saved")
 
         });
 
@@ -100,21 +95,21 @@ class Popup extends Component {
         //this.setState({savedChanges: true});
     }
     getData(){
-        return(this.props.opacityValue);
+        return(this.props.blackValue);
     }
 
     Cancel(){
-        var opacityValue = this.props.opacityValue;
+        var blackValue = this.props.blackValue;
         var yellowValue = this.props.yellowValue;
 
-        // chrome.storage.sync.set({'opacityValueChrome': opacityValue, 'yellowValueChrome': yellowValue}, () =>{
-        //     alert("Success! data: "+ opacityValue + " and "+ yellowValue + " saved")
+        // chrome.storage.sync.set({'blackValueChrome': blackValue, 'yellowValueChrome': yellowValue}, () =>{
+        //     alert("Success! data: "+ blackValue + " and "+ yellowValue + " saved")
         //
         // })
-        console.log("OPACITY " + opacityValue + " YELLOW "+yellowValue);
+        console.log("BLACK " + blackValue + " YELLOW "+yellowValue);
         this.props.dispatch({
-            type: 'CHANGE_OPACITY_RANGE',
-            value: opacityValue,
+            type: 'CHANGE_BLACK_RANGE',
+            value: blackValue,
             color: 'black',
             toggledOpacity: true
         });
@@ -134,9 +129,9 @@ class Popup extends Component {
         return(
             <div id="popup_wrapper">
                 <div id="range_sliders">
-                    <div id="opacity_container">
-                        <input type="range" id="opacity_range" min="0" max="70" step="1" defaultValue={this.props.opacityValue}></input>
-                        <p id="opacity_status">{this.props.opacityValue}</p>
+                    <div id="black_container">
+                        <input type="range" id="black_range" min="0" max="70" step="1" defaultValue={this.props.blackValue}></input>
+                        <p id="black_status">{this.props.blackValue}</p>
                     </div>
                     <br></br>
                     <div id="yellow_container">
@@ -157,7 +152,7 @@ class Popup extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        opacityRange: state.opacityRange,
+        blackRange: state.blackRange,
         yellowRange: state.yellowRange
     };
 };
