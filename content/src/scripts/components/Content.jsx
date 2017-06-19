@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-
+import '../../../../styles/background.css'
 class Content extends Component {
     constructor(props){
         console.log("ala constructor pagina");

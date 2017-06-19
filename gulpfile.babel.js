@@ -70,12 +70,17 @@ gulp.task('icon-png', ['clean'], () => {
 
 
 gulp.task('background-css', ['clean'], () => {
-    return gulp.src('background.css')
+    return gulp.src('styles/background.css')
+        .pipe(gulp.dest('./build'));
+});
+
+gulp.task('popup-css', ['clean'], () => {
+    return gulp.src('styles/popup.css')
         .pipe(gulp.dest('./build'));
 });
 
 
-gulp.task('build', ['copy-manifest', 'popup-js', 'popup-html', 'event-js', 'content-js', 'icon-png', 'background-css']);
+gulp.task('build', ['copy-manifest', 'popup-js', 'popup-html', 'event-js', 'content-js', 'icon-png', 'background-css', 'popup-css']);
 
 gulp.task('watch', ['default'], () => {
     gulp.watch('popup/**/*', ['build']);

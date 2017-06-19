@@ -23,7 +23,7 @@
   "content_scripts": [
     {
       "matches": ["*://*/*", "file:///*/*"],
-      "css": ["background.css"],
+      "css": ["background.css", "popup.css"],
       "js": ["content.js"]
     }
   ]

@@ -3,7 +3,7 @@
  */
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-
+import '../../../../../styles/popup.css'
 class Popup extends Component {
     constructor(props){
         console.log("ala constructor popup");
@@ -24,7 +24,7 @@ class Popup extends Component {
         opacityInput.addEventListener('mouseup', () => {
 
             var opacityValue = document.getElementById("opacity_range").value;
-            document.getElementById("opacity_status").innerHTML = "Opacity: " + opacityValue;
+            document.getElementById("opacity_status").innerHTML = opacityValue;
             console.log("ala in popup", opacityValue);
 
 
@@ -39,7 +39,7 @@ class Popup extends Component {
         var yellowInput= document.getElementById("yellow_range");
         yellowInput.addEventListener('mouseup', () => {
             var yellowValue = document.getElementById("yellow_range").value;
-            document.getElementById("yellow_status").innerHTML = "Yellow:" + yellowValue;
+            document.getElementById("yellow_status").innerHTML = yellowValue;
 
             this.props.dispatch({
                 type: 'CHANGE_YELLOW_RANGE',
@@ -131,19 +131,18 @@ class Popup extends Component {
     }
     render(){
 
-        // var opacityValue = this.state.opacityRange;
-        // console.log("IN RENER VAL LA OPACITY: " ,opacityValue);
-        //TODO: fac funtie care face disalbe chiar la inceput daca amandoua slideurile nu is pe 0
-
         return(
             <div id="popup_wrapper">
                 <div id="range_sliders">
-                    <input type="range" id="opacity_range" min="0" max="70" step="1" defaultValue={this.props.opacityValue}></input>
-                    <p id="opacity_status">Opacity:{this.props.opacityValue}</p>
+                    <div id="opacity_container">
+                        <input type="range" id="opacity_range" min="0" max="70" step="1" defaultValue={this.props.opacityValue}></input>
+                        <p id="opacity_status">{this.props.opacityValue}</p>
+                    </div>
                     <br></br>
-
-                    <input type="range" id="yellow_range" min="0" max="30" step="1" defaultValue={this.props.yellowValue}></input>
-                    <p id="yellow_status">Yellow:{this.props.yellowValue}</p>
+                    <div id="yellow_container">
+                        <input type="range" id="yellow_range" min="0" max="30" step="1" defaultValue={this.props.yellowValue}></input>
+                        <p id="yellow_status">{this.props.yellowValue}</p>
+                    </div>
                 </div>
                 <div id="popup_buttons">
                     <input type="button" id="save_data" value="Save Data" onClick={this.saveData} style={{marginRight: 5+'px'}}/>
@@ -154,15 +153,6 @@ class Popup extends Component {
         );
     }
 
-    // component(){
-    //     if(this.state.savedChanges == false){
-    //         alert("Save changes in order to keep them!")
-    //         this.props.dispatch({
-    //             type: 'CHANGE_OPACITY_RANGE',
-    //             value: this.props.opacityValue
-    //         });
-    //     }
-    // }
 }
 
 const mapStateToProps = (state) => {
