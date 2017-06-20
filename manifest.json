@@ -12,7 +12,8 @@
   },
   "browser_action": {
     "default_title": "Take care app",
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "css": ["popup.css"]
   },
   "icons": {
     "16" : "bbgeye16.png",
@@ -22,8 +23,8 @@
   "permissions": ["tabs", "http://*/*", "https://*/*", "file:///*/*", "storage"],
   "content_scripts": [
     {
-      "matches": ["*://*/*", "file:///*/*"],
-      "css": ["background.css", "popup.css"],
+      "matches": ["*://*/*"],
+      "css": ["content.css"],
       "js": ["content.js"]
     }
   ]
