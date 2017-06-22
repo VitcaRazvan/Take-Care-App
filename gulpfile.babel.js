@@ -81,10 +81,10 @@ gulp.task('popup-css', ['clean'], () => {
 
 gulp.task('build', ['copy-manifest', 'popup-js', 'popup-html', 'event-js', 'content-js', 'icon-png', 'content-css', 'popup-css']);
 
-gulp.task('watch', ['default'], () => {
-    gulp.watch('popup/**/*', ['build']);
-    gulp.watch('content/**/*', ['build']);
-    gulp.watch('event/**/*', ['build']);
-});
+// gulp.task('watch', ['default'], () => {
+//     gulp.watch('popup/**/*', ['build']);
+//     gulp.watch('content/**/*', ['build']);
+//     gulp.watch('event/**/*', ['build']);
+// });
 
 gulp.task('default', ['build']);

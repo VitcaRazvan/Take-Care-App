@@ -11,6 +11,17 @@
     display: flex !important;
 }
 
+#input_section{
+    display: flex;
+}
+
+#age_input{
+    width: 20px;
+    height: 12px;
+    margin-top: 12px;
+    margin-left: 5px;
+}
+
 #yellow_container .range {
     -webkit-appearance: none;
     -moz-appearance: none;
