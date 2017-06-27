@@ -12,9 +12,6 @@ class Popup extends Component {
 
     componentDidMount(){
 
-        // document.addEventListener('click', () =>{
-        //
-        // });
         var blackInput= document.getElementById("black_range");
         blackInput.addEventListener('mouseup', () => {
 
@@ -50,12 +47,7 @@ class Popup extends Component {
         this.disableRange(this.props.blackValue, this.props.yellowValue);
     }
 
-    // setInitialShade(){
-    //     this.props.dispatch({
-    //         type: 'CHANGE_OPACITY_RANGE',
-    //         value: this.props.opacityValue
-    //     });
-    // }
+
     handleClick(event){
         var blackValue = document.getElementById("black_range").value;
         var yellowValue = document.getElementById("yellow_range").value;
@@ -102,10 +94,6 @@ class Popup extends Component {
         var blackValue = this.props.blackValue;
         var yellowValue = this.props.yellowValue;
 
-        // chrome.storage.sync.set({'blackValueChrome': blackValue, 'yellowValueChrome': yellowValue}, () =>{
-        //     alert("Success! data: "+ blackValue + " and "+ yellowValue + " saved")
-        //
-        // })
         console.log("BLACK " + blackValue + " YELLOW "+yellowValue);
         this.props.dispatch({
             type: 'CHANGE_BLACK_RANGE',

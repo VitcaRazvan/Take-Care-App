@@ -24,12 +24,7 @@ class Content extends Component {
         console.log("inta in setShadeee in componenta cu black: "+this.props.black.value + " si yellow " +this.props.yellow.value);
         console.log("inta in setShadeee in componenta cu black: "+this.props.blackValue + " si yellow " +this.props.yellowValue + " CHROME");
 
-        // if(this.props.black == 0){
-        //     console.log("inta 1 i if");
-        //     this.setState({isFirstRun : false});
-        //     return(document.getElementById("take_care_wrapper").style.black = this.props.blackValueChrome/100);
-        //
-        // }else{
+
         if (this.props.yellow.value == undefined && this.props.black.value == undefined ){
             if(this.props.yellowValue != 0){
                 console.log("11");
@@ -49,7 +44,6 @@ class Content extends Component {
             document.getElementById("take_care_wrapper").style.backgroundColor = this.props.yellow.color;
             document.getElementById("take_care_wrapper").style.opacity = this.props.yellow.value/100;
         }
-
 
 
     };
